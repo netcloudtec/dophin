@@ -1,0 +1,132 @@
+<configuration>
+    <!-- 定义APP_Name，为区分flink的不同程序日志 -->
+    <property name="APP_Name" value="sdklog_analisis_streaming-dev"/>
+    <contextName>${APP_Name}</contextName>
+
+    <!-- 新增logstash-kafka-appender配置 -->
+    <appender name="kafkaAppender" class="com.github.danielwegener.logback.kafka.KafkaAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} ${APP_Name} [%thread] [%level] [%class:%line] - %msg%n</pattern>
+        </encoder>
+        <topic>topic-flink-logs</topic>
+        <keyingStrategy class="com.github.danielwegener.logback.kafka.keying.NoKeyKeyingStrategy"/>
+        <deliveryStrategy class="com.github.danielwegener.logback.kafka.delivery.AsynchronousDeliveryStrategy"/>
+        <producerConfig>bootstrap.servers=xxx:9092</producerConfig>
+        <producerConfig>acks=1</producerConfig>
+        <producerConfig>linger.ms=500</producerConfig>
+        <producerConfig>max.block.ms=0</producerConfig>
+        <producerConfig>client.id=flinkonyarn-${HOSTNAME}-${CONTEXT_NAME}-logback-relaxed</producerConfig>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="kafkaAppender"/>
+    </root>
+
+    <logger name="org.apache.flink.runtime.metrics.MetricRegistryImpl" additivity="false">
+        <level value="ERROR"/>
+        <appender-ref ref="file"/>
+    </logger>
+
+    <!-- flink原来的默认配置 -->
+    <appender name="file" class="ch.qos.logback.core.FileAppender">
+        <file>${log.file}</file>
+        <append>false</append>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} ${APP_Name} [%thread] [%level] [%class:%line] - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- This affects logging for both user code and Flink -->
+    <root level="INFO">
+        <appender-ref ref="file"/>
+    </root>
+    <logger name="akka" level="INFO">
+        <appender-ref ref="file"/>
+    </logger>
+    <logger name="org.apache.kafka" level="INFO">
+        <appender-ref ref="file"/>
+    </logger>
+    <logger name="org.apache.hadoop" level="INFO">
+        <appender-ref ref="file"/>
+    </logger>
+    <logger name="org.apache.zookeeper" level="INFO">
+        <appender-ref ref="file"/>
+    </logger>
+
+    <!-- Suppress the irrelevant (wrong) warnings from the Netty channel handler -->
+    <logger name="org.apache.flink.shaded.akka.org.jboss.netty.channel.DefaultChannelPipeline" level="ERROR">
+        <appender-ref ref="file"/>
+    </logger>
+
+
+    <!-- 输出到控制台 -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss:SSS} ${APP_Name} [%thread] [%level] [%class:%line] - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- error日志 -->
+    <appender name="ERROR-OUT" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/error.log</file>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss:SSS} ${APP_Name} [%thread] [%level] [%class:%line] - %msg%n</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/error.%d{yyyy-MM-dd}.log.zip</fileNamePattern>
+            <maxHistory>5</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <!-- info日志 -->
+    <appender name="INFO-OUT"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/info.log</file>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss:SSS} ${APP_Name} [%thread] [%level] [%class:%line] - %msg%n</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/info.%d{yyyy-MM-dd}.log.zip</fileNamePattern>
+            <maxHistory>5</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <!-- debug日志 -->
+    <appender name="DEBUG-OUT"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/debug.log</file>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss:SSS} ${APP_Name} [%thread] [%level] [%class:%line] - %msg%n</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>DEBUG</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/debug-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>100MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+    </appender>
+
+    <!-- 配置好前面对应的appender -->
+    <root level="info">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="ERROR-OUT"/>
+        <appender-ref ref="INFO-OUT"/>
+        <appender-ref ref="DEBUG-OUT"/>
+    </root>
+</configuration>

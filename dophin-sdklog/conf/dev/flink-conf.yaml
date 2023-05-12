@@ -1,0 +1,10 @@
+metrics.reporters: promgateway
+metrics.reporter.promgateway.class: org.apache.flink.metrics.prometheus.PrometheusPushGatewayReporter
+metrics.reporter.promgateway.host: xxx
+metrics.reporter.promgateway.port: 9091
+metrics.reporter.promgateway.jobName: sdklog-analisis-streaming
+metrics.reporter.promgateway.randomJobNameSuffix: true
+metrics.reporter.promgateway.deleteOnShutdown: false
+state.backend.rocksdb.latency-track-enabled: true
+# 开启火焰图
+rest.flamegraph.enabled: true

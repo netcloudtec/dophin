@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/dophin-autocar-experience/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/dophin-autocar-experience/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/dophin-autocar-experience/src/main/resources/config/${profiles.active}" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/dophin-autocar-experience/src/main/resources/config/dev" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/dophin-autocar-mileage/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/dophin-autocar-mileage/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/dophin-autocar-msgrecord/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/dophin-autocar-msgrecord/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/dophin-coordinate-b/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/dophin-coordinate-b/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/dophin-coordinate-b/src/main/resources/config/${profiles.active}" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/dophin-coordinate-b/src/main/resources/config/dev" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/dophin-sdklog/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/dophin-sdklog/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/dophin-sdklog/src/main/resources/config/${profiles.active}" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/dophin-sdklog/src/main/resources/config/dev" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/dophin-word-count/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/dophin-word-count/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/flinklearning-1.15.2/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/flinklearning-1.15.2/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+  </component>
+</project>
