@@ -6,8 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="dophin-sdklog" />
-        <module name="dophin-word-count" />
+        <module name="dophin-fink-1.17.0" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -15,6 +14,8 @@
       <module name="dophin-autocar-mileage" target="1.8" />
       <module name="dophin-autocar-msgrecord" target="1.8" />
       <module name="dophin-coordinate-b" target="1.8" />
+      <module name="dophin-sdklog" target="8" />
+      <module name="dophin-word-count" target="1.8" />
       <module name="flinklearning-1.15.2" target="1.8" />
     </bytecodeTargetLevel>
   </component>

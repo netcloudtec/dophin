@@ -13,6 +13,8 @@
     <file url="file://$PROJECT_DIR$/dophin-coordinate-b/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/dophin-coordinate-b/src/main/resources/config/${profiles.active}" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/dophin-coordinate-b/src/main/resources/config/dev" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/dophin-fink-1.17.0/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/dophin-fink-1.17.0/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/dophin-sdklog/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/dophin-sdklog/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/dophin-sdklog/src/main/resources/config/${profiles.active}" charset="UTF-8" />
