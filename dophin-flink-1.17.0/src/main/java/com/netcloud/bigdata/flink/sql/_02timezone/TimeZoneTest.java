@@ -10,6 +10,8 @@ import org.apache.flink.table.api.Table;
 import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;
 import java.util.Arrays;
 
+import static org.apache.flink.table.api.Expressions.$;
+
 /**
  * @author netcloud
  * @date 2023-05-16 14:37:37
@@ -62,11 +64,10 @@ public class TimeZoneTest {
                         .watermark("rowtime", "rowtime - interval '5' SECOND ")
                         .build());
         table.printSchema();
-
+        table.select($("status")).execute().print();
         tableEnv.createTemporaryView("source_db.source_table", table);
         //tableEnv.sqlQuery("select * from source_db.source_table").execute().print();
         tableEnv.sqlQuery("select cast(tumble_start(rowtime, INTERVAL '1' DAY) as string) AS tumble_start,cast(tumble_end(rowtime, INTERVAL '1' DAY) as string) AS tumble_end,count(1) as cnt from source_db.source_table GROUP BY TUMBLE(rowtime, INTERVAL '1' DAY)").execute().print();
-
         /**
          * 也可以将Table转为DataStream输出打印
         Table result = tableEnv.sqlQuery("select cast(tumble_start(rowtime, INTERVAL '1' DAY) as string) AS tumble_start,cast(tumble_end(rowtime, INTERVAL '1' DAY) as string) AS tumble_end,count(1) as cnt from source_db.source_table GROUP BY TUMBLE(rowtime, INTERVAL '1' DAY)");
@@ -84,18 +85,14 @@ public class TimeZoneTest {
         public String status;
         public Long id;
         public Long timestamp;
-
         public Event() {
 
         }
-
         public Event(String status, Long id, Long timestamp) {
             this.status = status;
             this.id = id;
             this.timestamp = timestamp;
         }
-
-
         @Override
         public String toString() {
             return "Event{" +

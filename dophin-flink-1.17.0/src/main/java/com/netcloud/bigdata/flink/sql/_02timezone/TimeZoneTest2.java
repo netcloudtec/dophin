@@ -83,17 +83,14 @@ public class TimeZoneTest2 {
         public String status;
         public Long id;
         public String timestamp;
-
         public Event() {
 
         }
-
         public Event(String status, Long id, String timestamp) {
             this.status = status;
             this.id = id;
             this.timestamp = timestamp;
         }
-
         @Override
         public String toString() {
             return "Event{" +

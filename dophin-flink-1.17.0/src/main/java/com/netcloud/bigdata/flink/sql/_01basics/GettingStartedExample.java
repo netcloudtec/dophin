@@ -29,8 +29,8 @@ public class GettingStartedExample {
         // 在这种场景下:声明表程序应该以批处理模式执行
         final EnvironmentSettings settings = EnvironmentSettings
                 .newInstance()
-                //.inStreamingMode() //声明为流任务
-                .inBatchMode()     //声明批流任务
+                .inStreamingMode() //声明为流任务
+//                .inBatchMode()     //声明批流任务
                 .build();
         final TableEnvironment env = TableEnvironment.create(settings);
 
@@ -140,7 +140,6 @@ public class GettingStartedExample {
                                 $("date_of_birth"),
                                 call(AddressNormalizer.class, $("street"), $("zip_code"), $("city"))
                                         .as("address"));
-
         // 使用execute()和collect()从集群中收集结果
         // 这对于在将其存储到外部系统之前进行测试非常有用
         try (CloseableIterator<Row> iterator = youngCustomers.execute().collect()) {
