@@ -1,4 +1,4 @@
-package com.netcloud.bigdata.flink.table.java.basics;
+package com.netcloud.bigdata.flink.sql._01basics;
 
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
@@ -11,7 +11,12 @@ import java.util.Arrays;
  * @author netcloud
  * @date 2023-05-15 14:55:39
  * @email netcloudtec@163.com
- * @description 方法二:通过StreamExecutionEnvironment创建TableEnvironment
+ * @description
+ * 1、方法二:通过StreamExecutionEnvironment创建TableEnvironment
+ * 2、DataStream流转为Table
+ * 1)fromDataStream()
+ * 2)createTemporaryView()
+ *
  */
 public class StreamSQLExample {
 
