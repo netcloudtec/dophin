@@ -47,22 +47,20 @@ public class TumbleWindowExample {
                 + "    max_price BIGINT,\n"
                 + "    min_price BIGINT,\n"
                 + "    uv BIGINT,\n"
-                + "    window_start BIGINT,\n"
-                + "    window_end TIMESTAMP(3)\n"
+                + "    window_start BIGINT\n"
                 + ") WITH (\n"
                 + "  'connector' = 'print'\n"
                 + ")";
 
-        String selectWhereSql = "insert into sink_table\n"
-                + "select dim,\n"
+        String selectWhereSql = "INSERT INTO sink_table\n"
+                + "SELECT dim,\n"
                 + "\t   sum(bucket_pv) as pv,\n"
                 + "\t   sum(bucket_sum_price) as sum_price,\n"
                 + "\t   max(bucket_max_price) as max_price,\n"
                 + "\t   min(bucket_min_price) as min_price,\n"
                 + "\t   sum(bucket_uv) as uv,\n"
-                + "\t   max(window_start) as window_start,\n"
-                + "\t   max(window_end) as window_end\n"
-                + "from (\n"
+                + "\t   max(window_start) as window_start\n"
+                + "FROM (\n"
                 + "\t SELECT dim,\n"
                 + "\t \t    UNIX_TIMESTAMP(CAST(window_start AS STRING)) * 1000 as window_start, \n"
                 + "\t        window_end, \n"
@@ -81,7 +79,7 @@ public class TumbleWindowExample {
                 + "\t\t\t  mod(user_id, 1024)\n"
                 + ")\n"
                 + "group by dim,\n"
-                + "\t\t window_start,window_end";
+                + "\t\t window_start";
 
         tableEnv.getConfig().getConfiguration().setString("pipeline.name", "1.17.0 WINDOW TVF TUMBLE WINDOW 案例");
 
