@@ -1,7 +1,5 @@
 package com.netcloud.bigdata.flink.sql._02timezone;
 
-import com.netcloud.bigdata.flink.sql.udf.Mod_UDF;
-import com.netcloud.bigdata.flink.sql.udf.StatusMapper_UDF;
 import lombok.Data;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
@@ -51,9 +49,6 @@ public class TimeZoneTest {
                 new Event("2", 301L, 1627257540000L),// 北京时间: 2021-07-26 07:59:00
                 new Event("2", 1L, 1627257600000L), // 北京时间： 2021-07-26 08:00:00
                 new Event("2", 301L, 1627315140000L)));// 北京时间：2021-07-26 23:59:00
-
-        tableEnv.createTemporarySystemFunction("mod", new Mod_UDF());
-        tableEnv.createTemporarySystemFunction("status_mapper", new StatusMapper_UDF());
 
         Table table = tableEnv.fromDataStream(tuple3DataStream,
                 Schema.newBuilder()
