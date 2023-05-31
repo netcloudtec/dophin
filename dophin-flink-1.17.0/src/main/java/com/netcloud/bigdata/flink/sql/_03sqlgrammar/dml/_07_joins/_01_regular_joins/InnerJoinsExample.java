@@ -11,7 +11,7 @@ import java.util.Arrays;
  * @email netcloudtec@163.com
  * @description
  * InnderJoin 两个流进行join的时候，
- * 符合条件的就会关联上，不考虑时间问题
+ * 符合条件的就会关联上，不考虑事件时间或处理时间问题
  */
 public class InnerJoinsExample {
     public static void main(String[] args) {
