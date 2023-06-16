@@ -25,7 +25,7 @@ public class ModuleExample4 {
         StreamTableEnvironment tableEnv = StreamTableEnvironment.create(env);
         //TODO 1.source-kafka-test主题
         KafkaSource<String> source = KafkaSource.<String>builder()
-                .setBootstrapServers("10.0.20.31:9092")
+                .setBootstrapServers("xxx:9092")
                 .setTopics("autocar_Madvisor")
                 .setGroupId("autocar_Madvisor_online03")
                 //.setStartingOffsets(OffsetsInitializer.earliest())//消费起始位移直接选择为"最早"

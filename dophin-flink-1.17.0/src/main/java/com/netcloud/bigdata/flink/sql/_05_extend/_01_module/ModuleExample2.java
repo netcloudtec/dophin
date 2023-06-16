@@ -8,7 +8,7 @@ import org.apache.flink.table.module.hive.HiveModule;
  * @author netcloud
  * @date 2023-06-09 16:56:13
  * @email netcloudtec@163.com
- * @description 使用Java API加载、卸载、使用、列出Module
+ * @description 使用Java API加载、卸载、使用、列出Module 作为了解使用
  */
 public class ModuleExample2 {
     public static void main(String[] args) {

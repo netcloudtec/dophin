@@ -24,7 +24,7 @@ public class ModuleExample3 {
         env.setParallelism(1);
         StreamTableEnvironment tableEnv = StreamTableEnvironment.create(env);
 
-        //1、FlinkSQL扩展支持内置的udf，maven中引入hive的connector
+        //1、FlinkSQL扩展支持内置的udf，maven中引入hive的connector、exec依赖
         tableEnv.loadModule("hive",new HiveModule("2.3.3"));
         String[] modules = tableEnv.listModules();
         Arrays.stream(modules).forEach(System.out::println);
