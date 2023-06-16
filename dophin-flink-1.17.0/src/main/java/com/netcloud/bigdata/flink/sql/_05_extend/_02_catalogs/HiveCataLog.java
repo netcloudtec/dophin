@@ -37,9 +37,11 @@ public class HiveCataLog {
         //HiveCatalog hive = new HiveCatalog(name, defaultDatabase, hiveConfDir);
         HiveCatalog hive = new HiveCatalog(name, null, hiveConfDir);
         tEnv.registerCatalog("myhive", hive);
+        //创建当前catalog下的库
         tEnv.executeSql("CREATE DATABASE IF NOT EXISTS myhive.mydb WITH('k1' = 'a', 'k2' = 'b')");
+        //创建当前catalog、database下的表
         tEnv.executeSql("CREATE TABLE IF NOT EXISTS myhive.mydb.mytable (name STRING, age INT) WITH ('connector' = 'print')");
         tEnv.listCatalogs();
-        //最后创建的表位于user/hive/warehouse/mydb.db目录下
+        //最后创建的表其元数据位于user/hive/warehouse/mydb.db目录下
     }
 }

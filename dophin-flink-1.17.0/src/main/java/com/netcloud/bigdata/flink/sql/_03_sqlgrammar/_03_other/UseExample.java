@@ -20,6 +20,8 @@ public class UseExample {
         env.setRuntimeMode(RuntimeExecutionMode.STREAMING);
         env.setParallelism(1);
         StreamTableEnvironment tEnv = StreamTableEnvironment.create(env);
+        // 设置hdfs 用户名称
+        System.setProperty("HADOOP_USER_NAME", "hadoop");
 
         String name = "myhive";
         String defaultDatabase = "mydb";
@@ -32,5 +34,10 @@ public class UseExample {
         tEnv.useCatalog("myhive");
         tEnv.useDatabase("mydb");
         tEnv.from("myhive.mydb.mytable").printSchema();
+
+        //使用hive已经存在的库
+        tEnv.useCatalog("myhive");
+        tEnv.useDatabase("zhidao");
+        tEnv.sqlQuery("SELECT * FROM myhive.zhidao.dwd_zhidao_autopilot_oper_order_info limit 10").execute().print();
     }
 }
