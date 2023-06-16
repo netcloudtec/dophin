@@ -1,6 +1,5 @@
 package com.netcloud.bigdata.flink.sql._05_extend._04_tuning;
 
-import com.netcloud.bigdata.flink.sql._01_basics.SocketDynamicTableExample;
 import com.netcloud.bigdata.flink.sql.bean.Click;
 import org.apache.flink.api.common.functions.MapFunction;
 import org.apache.flink.api.java.utils.ParameterTool;

@@ -1,5 +1,6 @@
 package com.netcloud.bigdata.flink.sql._01_basics;
 
+import com.netcloud.bigdata.flink.sql.bean.Click;
 import org.apache.flink.api.common.functions.MapFunction;
 import org.apache.flink.api.java.utils.ParameterTool;
 import org.apache.flink.streaming.api.datastream.DataStream;
@@ -61,36 +62,6 @@ public class SocketDynamicTableExample {
             env.execute();
         } catch (Exception e) {
             e.printStackTrace();
-        }
-    }
-
-
-    /**
-     * Simple POJO.
-     */
-    public static class Click {
-        public String userName;
-        public String cTime;
-        public String url;
-
-        // for POJO detection in DataStream API
-        public Click() {
-        }
-
-        // for structured type detection in Table API
-        public Click(String userName, String cTime, String url) {
-            this.userName = userName;
-            this.cTime = cTime;
-            this.url = url;
-        }
-
-        @Override
-        public String toString() {
-            return "Click{" +
-                    "userName='" + userName + '\'' +
-                    ", cTime='" + cTime + '\'' +
-                    ", url='" + url + '\'' +
-                    '}';
         }
     }
 }

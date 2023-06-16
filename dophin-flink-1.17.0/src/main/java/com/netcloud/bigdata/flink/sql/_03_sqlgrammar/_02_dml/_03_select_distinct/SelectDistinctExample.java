@@ -1,7 +1,6 @@
 package com.netcloud.bigdata.flink.sql._03_sqlgrammar._02_dml._03_select_distinct;
 
 import com.netcloud.bigdata.flink.sql.bean.Order;
-import com.netcloud.bigdata.flink.sql.udf.ToUpper_UDF;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.table.api.Schema;
@@ -38,9 +37,6 @@ public class SelectDistinctExample {
                         .build());
         // 注册临时视图
         tableEnv.createTemporaryView("source_table", table);
-        // 注册函数
-        tableEnv.createTemporarySystemFunction("to_upper", ToUpper_UDF.class);
-
         // 在SQL里使用SELECT DISTINCT
         String selectSQL="SELECT DISTINCT orderNo FROM source_table";
         tableEnv.sqlQuery(selectSQL).execute().print();

@@ -291,5 +291,6 @@
     <orderEntry type="library" name="Maven: com.fasterxml.woodstox:woodstox-core:5.0.3" level="project" />
     <orderEntry type="library" name="Maven: org.apache.hadoop:hadoop-mapreduce-client-common:3.1.1" level="project" />
     <orderEntry type="library" name="Maven: org.apache.hadoop:hadoop-mapreduce-client-jobclient:3.1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.flink:flink-connector-clickhouse:1.16.0-SNAPSHOT" level="project" />
   </component>
 </module>

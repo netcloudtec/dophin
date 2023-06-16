@@ -2,7 +2,6 @@ package com.netcloud.bigdata.flink.sql._03_sqlgrammar._02_dml._02_select_where;
 
 
 import com.netcloud.bigdata.flink.sql.bean.Order;
-import com.netcloud.bigdata.flink.sql.udf.ToUpper_UDF;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.table.api.Schema;
@@ -38,9 +37,6 @@ public class SelectWhereExample {
                         .build());
         // 注册临时视图
         tableEnv.createTemporaryView("source_table", table);
-        // 注册函数
-        tableEnv.createTemporarySystemFunction("to_upper", ToUpper_UDF.class);
-
         // 在 SQL 里调用注册好的函数
         String selectSQL="SELECT orderNo,name,to_upper(name) name_Upper FROM source_table";
         tableEnv.sqlQuery(selectSQL).execute().print();
