@@ -3,6 +3,8 @@ package com.netcloud.bigdata.flink.sql._03_sqlgrammar._01_ddl;
 import org.apache.flink.table.api.EnvironmentSettings;
 import org.apache.flink.table.api.TableEnvironment;
 
+import java.util.Arrays;
+
 
 /**
  * @author netcloud
@@ -24,7 +26,7 @@ public class CreateViewExample {
          * 创建表(CREATE TABLE WITH)并指定WATERMARK
          * 这里我们使用的connector是datagen,可自行选择其他
          */
-        String sourceSql = "CREATE TABLE source_table (\n"
+        String sql = "CREATE TABLE source_table (\n"
                 + "    dim STRING,\n"
                 + "    user_id BIGINT,\n"
                 + "    price BIGINT,\n"
@@ -38,31 +40,26 @@ public class CreateViewExample {
                 + "  'fields.user_id.max' = '100000',\n"
                 + "  'fields.price.min' = '1',\n"
                 + "  'fields.price.max' = '100000'\n"
-                + ")";
-
-        String sinkSql = "CREATE TABLE sink_table (\n"
+                + ");\n"
+                + "CREATE TABLE sink_table (\n"
                 + "    dim STRING,\n"
                 + "    user_id BIGINT,\n"
                 + "    price BIGINT,\n"
                 + "    row_time timestamp(3)\n"
                 + ") WITH (\n"
                 + "  'connector' = 'print'\n"
-                + ")";
-        String viewSql = "CREATE VIEW query_view AS\n"
+                + ");\n"
+                +"CREATE VIEW query_view AS\n"
                 + "SELECT\n"
                 + "    *\n"
                 + "FROM source_table\n"
-                + ";\n";
-        String executeSql = "INSERT INTO sink_table\n"
+                + ";\n"
+                +"INSERT INTO sink_table\n"
                 + "SELECT\n"
                 + "    *\n"
                 + "FROM query_view;";
-        tableEnv.executeSql(sourceSql);
-        tableEnv.executeSql(sinkSql);
-        tableEnv.executeSql(viewSql);
-        tableEnv.executeSql(executeSql);
 
-//        Arrays.stream(TEMPORARY_TABLE_SQL.split(";"))
-//                .forEach(tableEnv::executeSql);
+        Arrays.stream(sql.split(";"))
+                .forEach(tableEnv::executeSql);
     }
 }
