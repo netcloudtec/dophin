@@ -4,6 +4,7 @@ import org.apache.flink.api.common.RuntimeExecutionMode;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;
 import org.apache.flink.table.catalog.hive.HiveCatalog;
+import org.apache.flink.table.module.hive.HiveModule;
 
 /**
  * @author netcloud
@@ -77,6 +78,8 @@ public class ShowExample {
         // show views
         tEnv.executeSql("CREATE VIEW IF NOT EXISTS my_view AS SELECT * FROM source_table");
         tEnv.executeSql("SHOW VIEWS").print();
+
+        tEnv.loadModule("hive",new HiveModule("2.3.3"));
 
         // show functions
         tEnv.executeSql("SHOW FUNCTIONS").print();
